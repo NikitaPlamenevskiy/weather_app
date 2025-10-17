@@ -60,3 +60,25 @@
   margin: 0px;
   font-size: 36px;
 }
+
+.currentWeatherTempInfo {
+  width: 75%;
+  margin-top: 49px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  text-align: left;
+}
+
+.currentWeatherTempInfo img {
+  margin: 0px;
+  width: auto;
+  height: 24px;
+}
+
+.currentWeatherTempInfo p {
+  margin: 0px;
+  width: 90%;
+  font-size: 17px;
+}
