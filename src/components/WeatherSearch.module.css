@@ -1,5 +1,6 @@
 .searchContainer {
   display: flex;
+  flex-wrap: wrap;
   max-width: 452px;
   justify-content: center;
   padding-top: 40px;
@@ -26,4 +27,35 @@
 
 .searchInput:focus {
   outline: none;
+}
+
+.currentWeather{
+  width: 75%;
+  padding-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  border-bottom: 1px solid #C2D4D3;
+}
+
+.currentWeatherImg{
+  width: 100%;
+  height: auto;
+}
+
+.currentTemp{
+  width: 100%;
+  margin: 0px;
+  font-weight: bold;
+  font-size: 96px;
+}
+
+.currentCity{
+  margin: 0px;
+  font-size: 36px;
+}
+
+.currentDay{
+  margin: 0px;
+  font-size: 36px;
 }
