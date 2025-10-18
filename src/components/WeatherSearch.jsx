@@ -3,8 +3,8 @@ import weatherImage from "../assets/images/weather.png";
 import cloudRain from "../assets/images/cloudRain.png";
 import temperatureMin from "../assets/images/temperatureMin.png";
 import temperatureMax from "../assets/images/temperatureMax.png";
-import wind from "../assets/images/wind.png";
-import humidity from "../assets/images/humidity.png";
+import wind from "../assets/images/wind.svg";
+import humidity from "../assets/images/water.svg";
 
 function WeahterSearch() {
   return (
@@ -24,12 +24,18 @@ function WeahterSearch() {
         <p className={styles.currentDay}>Monday</p>
       </div>
       <div className={styles.currentWeatherTempInfo}>
-        <img src={cloudRain} alt={cloudRain} />
-        <p>Light Rain</p>
-        <img src={temperatureMin} alt={temperatureMin} />
-        <p>Min Temperature: 28°C</p>
-        <img src={temperatureMax} alt={temperatureMax} />
-        <p>Max Temperature: 31°C</p>
+        <div>
+          <img src={cloudRain} alt={cloudRain} />
+          <p>Light Rain</p>
+        </div>
+        <div>
+          <img src={temperatureMin} alt={temperatureMin} />
+          <p>Min Temperature: 28°C</p>
+        </div>
+        <div>
+          <img src={temperatureMax} alt={temperatureMax} />
+          <p>Max Temperature: 31°C</p>
+        </div>
       </div>
       <div className={styles.additionalInfo}>
         <div className={styles.additionalInfoContainer}>
