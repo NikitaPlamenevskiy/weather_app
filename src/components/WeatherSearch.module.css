@@ -1,13 +1,13 @@
 .searchContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 50px;
+  gap: 20px;
   max-width: 452px;
   justify-content: center;
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #2d2f33;
-  border: 1px solid #45474A;
+  border: 1px solid #45474a;
   border-radius: 28px;
 }
 
@@ -91,7 +91,7 @@
   font-size: 17px;
 }
 
-.additionalInfo{
+.additionalInfo {
   padding: 15px;
   width: 75%;
   display: flex;
@@ -101,9 +101,10 @@
   background-color: #252425;
   border: 1px solid #212021;
   border-radius: 12px;
+  box-shadow: 2px 4px 5px 0 rgba(0, 0, 0, 0.25);
 }
 
-.additionalInfoContainer{
+.additionalInfoContainer {
   text-align: left;
   display: flex;
   flex-wrap: wrap;
