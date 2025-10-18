@@ -1,9 +1,10 @@
 import styles from "./WeatherSearch.module.css";
 import weatherImage from "../assets/images/weather.png";
-import cloudRain from "../assets/images/cloudRain.png"
-import temperatureMin from "../assets/images/temperatureMin.png"
-import temperatureMax from "../assets/images/temperatureMax.png"
-
+import cloudRain from "../assets/images/cloudRain.png";
+import temperatureMin from "../assets/images/temperatureMin.png";
+import temperatureMax from "../assets/images/temperatureMax.png";
+import wind from "../assets/images/wind.png";
+import humidity from "../assets/images/humidity.png";
 
 function WeahterSearch() {
   return (
@@ -26,9 +27,25 @@ function WeahterSearch() {
         <img src={cloudRain} alt={cloudRain} />
         <p>Light Rain</p>
         <img src={temperatureMin} alt={temperatureMin} />
-        <p>Min Temperature - 28°C</p>
+        <p>Min Temperature: 28°C</p>
         <img src={temperatureMax} alt={temperatureMax} />
-        <p>Max Temperature - 31°C</p>
+        <p>Max Temperature: 31°C</p>
+      </div>
+      <div className={styles.additionalInfo}>
+        <div className={styles.additionalInfoContainer}>
+          <img src={humidity} alt={humidity} />
+          <div>
+            <p>83%</p>
+            <h2>Humiduty</h2>
+          </div>
+        </div>
+        <div className={styles.additionalInfoContainer}>
+          <img src={wind} alt={wind} />
+          <div>
+            <p>6km/h</p>
+            <h2>Wind Speed</h2>
+          </div>
+        </div>
       </div>
     </section>
   );
