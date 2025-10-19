@@ -43,17 +43,37 @@ function WeatherInfo() {
   return (
     <section className={styles.weatherInfoContainer}>
       <div className={styles.weekInfoContainer}>
-        <h1>Week</h1>
+        <h2>Week</h2>
         <div className={styles.cardsContainer}>
           {weekInfo.map((day) => {
             return (
-              <div className={styles.dayCard}>
-                <h2>{day.day}</h2>
+              <div className={`${styles.card} ${styles.dayCard}`}>
+                <h3>{day.day}</h3>
                 <img src={day.img} alt={day.img} />
                 <p>{day.temperature}C</p>
               </div>
             );
           })}
+        </div>
+      </div>
+      <div className={styles.weekInfoContainer}>
+        <h2>Today's Overview</h2>
+        <div className={styles.cardsContainer}>
+          <div className={`${styles.infoCard} ${styles.card}  `}>
+            <h3>Air quality Index</h3>
+            <h2>53</h2>
+            <p>Good</p>
+          </div>
+          <div className={`${styles.infoCard} ${styles.card}  `}>
+            <h3>UV Index</h3>
+            <h2>53</h2>
+            <p>Good</p>
+          </div>
+          <div className={`${styles.infoCard} ${styles.card} `}>
+            <h3>Pressure</h3>
+            <h2>53</h2>
+            <p>Good</p>
+          </div>
         </div>
       </div>
     </section>

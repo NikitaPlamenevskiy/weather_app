@@ -1,6 +1,9 @@
 .weatherInfoContainer {
+  max-width: 940px;
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 50px;
   padding-left: 40px;
   padding-right: 40px;
   padding-top: 40px;
@@ -12,11 +15,11 @@
 }
 
 .weekInfoContainer {
-    width: auto;
+  width: 100%;
   margin: 0px;
 }
 
-.weekInfoContainer h1 {
+.weekInfoContainer h2 {
   width: 100%;
   margin: 0px;
   margin-bottom: 20px;
@@ -31,22 +34,50 @@
   gap: 15px;
 }
 
-.dayCard {
+.card {
   padding: 18px;
-  justify-content: center;
-  text-align: center;
   border-radius: 12px;
   background-color: #252425;
   border: 1px solid #212021;
   box-shadow: 2px 4px 5px 0 rgba(0, 0, 0, 0.25);
 }
 
-.dayCard h2 {
+.card h2,
+h3,
+p {
   margin: 0px;
 }
 
-.dayCard p {
-  margin: 0px;
+.dayCard {
+  justify-content: center;
+  text-align: center;
+}
+
+.dayCard h3,
+p {
   font-weight: 600;
   font-size: 24px;
+}
+
+.infoCard {
+  width: 27%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.infoCard h3 {
+  margin-bottom: 30px;
+  font-weight: 500;
+  font-size: 17px;
+}
+.infoCard h2 {
+  margin-bottom: 10px;
+  font-size: 48px;
+  font-weight: 600;
+}
+
+.infoCard p {
+  color: #009966;
+  font-weight: 700;
+  font-size: 17px;
 }
