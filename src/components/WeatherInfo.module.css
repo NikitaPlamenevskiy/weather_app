@@ -21,7 +21,6 @@
 
 .weekInfoContainer h2 {
   width: 100%;
-  margin: 0px;
   margin-bottom: 20px;
   font-size: 24px;
   font-weight: 600;
@@ -40,12 +39,6 @@
   background-color: #252425;
   border: 1px solid #212021;
   box-shadow: 2px 4px 5px 0 rgba(0, 0, 0, 0.25);
-}
-
-.card h2,
-h3,
-p {
-  margin: 0px;
 }
 
 .dayCard {

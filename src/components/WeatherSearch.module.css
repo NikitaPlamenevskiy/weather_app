@@ -86,7 +86,6 @@
 }
 
 .currentWeatherTempInfo p {
-  margin: 0px;
   width: 90%;
   font-size: 17px;
 }
@@ -118,13 +117,11 @@
 }
 
 .additionalInfoContainer p {
-  margin: 0px;
   font-size: 24px;
   font-weight: bold;
 }
 
 .additionalInfoContainer h2 {
-  margin: 0px;
   font-size: 16px;
   font-weight: normal;
 }
