@@ -1,11 +1,46 @@
-import "./App.css";
-import { WeahterSearch } from "./components/WeatherSearch";
+import { useEffect, useState } from "react";
+import { getCurrentWeather } from "./services/currentWeatherService";
+import { getUserPosition } from "./services/userPositionService";
+import { WeatherSearch } from "./components/WeatherSearch";
 import { WeatherInfo } from "./components/WeatherInfo";
+import "./App.css";
 
 function App() {
+  const [weather, setWeather] = useState(null);
+  const [coords, setCoords] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const handleUserPosition = async () => {
+      try {
+        const position = await getUserPosition();
+        const { latitude, longitude } = position;
+        setCoords({ latitude, longitude });
+      } catch (error) {
+        setError(error);
+      }
+    };
+    handleUserPosition();
+  }, []);
+
+  useEffect(() => {
+    if (!coords) return;
+
+    const fetchWeather = async () => {
+      try {
+        const data = await getCurrentWeather(coords.latitude, coords.longitude);
+        setWeather(data);
+      } catch (error) {
+        setError(error);
+      }
+    };
+    fetchWeather();
+  }, [coords]);
+  console.log(coords);
+  console.log(weather);
   return (
     <>
-      <WeahterSearch />
+      <WeatherSearch weather={weather} error={error} />
       <WeatherInfo />
     </>
   );

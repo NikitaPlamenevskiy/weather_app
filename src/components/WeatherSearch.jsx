@@ -1,12 +1,12 @@
 import styles from "./WeatherSearch.module.css";
-import weatherImage from "../assets/images/weather.png";
 import cloudRain from "../assets/images/cloudRain.png";
 import temperatureMin from "../assets/images/temperatureMin.png";
 import temperatureMax from "../assets/images/temperatureMax.png";
 import wind from "../assets/images/wind.svg";
 import humidity from "../assets/images/water.svg";
 
-function WeahterSearch() {
+function WeatherSearch({weather}) {
+
   return (
     <section className={styles.searchContainer}>
       <form className={styles.searchForm}>
@@ -18,37 +18,37 @@ function WeahterSearch() {
         ></input>
       </form>
       <div className={styles.currentWeather}>
-        <img className={styles.currentWeatherImg} src={weatherImage} />
-        <h1 className={styles.currentTemp}>30C</h1>
-        <p className={styles.currentCity}>Tomsk</p>
+        <img className={styles.currentWeatherImg} src={`https://openweathermap.org/img/wn/${weather !== null ? weather.weather[0].icon : ""}@4x.png`} />
+        <h1 className={styles.currentTemp}>{weather !== null ? Math.round(weather.main.temp) : ""}°C</h1>
+        <p className={styles.currentCity}>{weather !== null ? weather.name : ""}</p>
         <p className={styles.currentDay}>Monday</p>
       </div>
       <div className={styles.currentWeatherTempInfo}>
         <div>
           <img src={cloudRain} alt={cloudRain} />
-          <p>Light Rain</p>
+          <p>{weather !== null ? weather.weather[0].description : ""}</p>
         </div>
         <div>
           <img src={temperatureMin} alt={temperatureMin} />
-          <p>Min Temperature: 28°C</p>
+          <p>Min Temperature: {weather !== null ? weather.main.temp_min : ""}°C</p>
         </div>
         <div>
           <img src={temperatureMax} alt={temperatureMax} />
-          <p>Max Temperature: 31°C</p>
+          <p>Max Temperature: {weather !== null ? weather.main.temp_max : ""}°C</p>
         </div>
       </div>
       <div className={styles.additionalInfo}>
         <div className={styles.additionalInfoContainer}>
           <img src={humidity} alt={humidity} />
           <div>
-            <p>83%</p>
+            <p>{weather !== null ? weather.main.humidity : ""}%</p>
             <h2>Humiduty</h2>
           </div>
         </div>
         <div className={styles.additionalInfoContainer}>
           <img src={wind} alt={wind} />
           <div>
-            <p>6km/h</p>
+            <p>{weather !== null ? weather.wind.speed : "Loading"} km/h</p>
             <h2>Wind Speed</h2>
           </div>
         </div>
@@ -57,4 +57,4 @@ function WeahterSearch() {
   );
 }
 
-export { WeahterSearch };
+export { WeatherSearch };
