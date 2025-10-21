@@ -18,6 +18,7 @@ function App() {
         setCoords({ latitude, longitude });
       } catch (error) {
         if (error.code === 1) {
+          //If user doesnt allow his geolocation, shows Moscow as default value for coords 
           setCoords({ latitude: 55.7569, longitude: 37.6151 });
         }
       }
