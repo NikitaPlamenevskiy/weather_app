@@ -41,11 +41,6 @@
   border-bottom: 1px solid #c2d4d3;
 }
 
-.currentWeatherImg {
-  width: 100%;
-  height: auto;
-}
-
 .currentTemp {
   width: 100%;
   margin: 0px;

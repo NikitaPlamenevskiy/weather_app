@@ -24,7 +24,7 @@ function WeatherSearch({ weather }) {
           }@4x.png`}
         />
         <h1 className={styles.currentTemp}>
-          {weather !== null ? Math.round(weather.main.temp) : "Loading"}°C
+          {weather !== null ? `${Math.round(weather.main.temp)}°C` : "Loading"}
         </h1>
         <p className={styles.currentCity}>
           {weather !== null ? weather.name : "Loading"}
