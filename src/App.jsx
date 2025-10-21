@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getCurrentWeather } from "./services/weatherService";
+import { getCurrentWeather } from "./services/WeatherService";
 import { getUserPosition } from "./services/userPositionService";
 import { WeatherSearch } from "./components/WeatherSearch";
 import { WeatherInfo } from "./components/WeatherInfo";
