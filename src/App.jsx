@@ -17,7 +17,9 @@ function App() {
         const { latitude, longitude } = position;
         setCoords({ latitude, longitude });
       } catch (error) {
-        setError(error);
+        if (error.code === 1) {
+          setCoords({ latitude: 55.7569, longitude: 37.6151 });
+        }
       }
     };
     handleUserPosition();
@@ -36,8 +38,8 @@ function App() {
     };
     fetchWeather();
   }, [coords]);
-  console.log(coords);
-  console.log(weather);
+
+  console.log(error);
   return (
     <>
       <WeatherSearch weather={weather} error={error} />
