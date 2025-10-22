@@ -23,7 +23,7 @@ function App() {
   }, [weather]);
 
   useEffect(() => {
-    const handleUserPosition = async () => {
+    const fetchUserPosition = async () => {
       try {
         const position = await getUserPosition();
         const { latitude, longitude } = position;
@@ -35,7 +35,7 @@ function App() {
         }
       }
     };
-    handleUserPosition();
+    fetchUserPosition();
   }, []);
 
   useEffect(() => {
