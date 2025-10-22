@@ -39,7 +39,7 @@ function App() {
     };
     fetchWeather();
   }, [coords]);
-
+  console.log(weather);
   return (
     <>
       <WeatherSearch weather={weather} error={error} />
