@@ -24,6 +24,7 @@ function WeatherSearch({ weather, weekDay }) {
               src={`https://openweathermap.org/img/wn/${
                 weather !== null ? weather.weather[0].icon : "Loading"
               }@4x.png`}
+              alt={weather.weather[0].description}
             />
             <h1 className={styles.currentTemp}>
               {Math.round(weather.main.temp)}°C
