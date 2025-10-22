@@ -16,60 +16,58 @@ function WeatherSearch({ weather }) {
           placeholder="Search city..."
         ></input>
       </form>
-      <div className={styles.currentWeather}>
-        <img
-          className={styles.currentWeatherImg}
-          src={`https://openweathermap.org/img/wn/${
-            weather !== null ? weather.weather[0].icon : "Loading"
-          }@4x.png`}
-        />
-        <h1 className={styles.currentTemp}>
-          {weather !== null ? `${Math.round(weather.main.temp)}°C` : "Loading"}
-        </h1>
-        <p className={styles.currentCity}>
-          {weather !== null ? weather.name : "Loading"}
-        </p>
-        <p className={styles.currentDay}>Monday</p>
-      </div>
-      <div className={styles.currentWeatherTempInfo}>
-        <div>
-          <img src={cloudRain} alt={cloudRain} />
-          <p>{weather !== null ? weather.weather[0].description : "Loading"}</p>
-        </div>
-        <div>
-          <img src={temperatureMin} alt={temperatureMin} />
-          <p>
-            Min Temperature:{" "}
-            {weather !== null ? Math.round(weather.main.temp_min) : "Loading"}°C
-          </p>
-        </div>
-        <div>
-          <img src={temperatureMax} alt={temperatureMax} />
-          <p>
-            Max Temperature:{" "}
-            {weather !== null ? Math.round(weather.main.temp_max) : "Loading"}°C
-          </p>
-        </div>
-      </div>
-      <div className={styles.additionalInfo}>
-        <div className={styles.additionalInfoContainer}>
-          <img src={humidity} alt={humidity} />
-          <div>
-            <p>{weather !== null ? weather.main.humidity : "Loading"}%</p>
-            <h2>Humiduty</h2>
+      {weather !== null ? (
+        <>
+          <div className={styles.currentWeather}>
+            <img
+              className={styles.currentWeatherImg}
+              src={`https://openweathermap.org/img/wn/${
+                weather !== null ? weather.weather[0].icon : "Loading"
+              }@4x.png`}
+            />
+            <h1 className={styles.currentTemp}>
+              {Math.round(weather.main.temp)}°C
+            </h1>
+            <p className={styles.currentCity}>{weather.name}</p>
+            <p className={styles.currentDay}>Monday</p>
           </div>
-        </div>
-        <div className={styles.additionalInfoContainer}>
-          <img src={wind} alt={wind} />
-          <div>
-            <p>
-              {weather !== null ? Math.round(weather.wind.speed) : "Loading"}{" "}
-              km/h
-            </p>
-            <h2>Wind Speed</h2>
+          <div className={styles.currentWeatherTempInfo}>
+            <div>
+              <img src={cloudRain} alt={cloudRain} />
+              <p>{weather.weather[0].description}</p>
+            </div>
+            <div>
+              <img src={temperatureMin} alt={temperatureMin} />
+              <p>Min Temperature: {Math.round(weather.main.temp_min)}°C</p>
+            </div>
+            <div>
+              <img src={temperatureMax} alt={temperatureMax} />
+              <p>Max Temperature: {Math.round(weather.main.temp_max)}°C</p>
+            </div>
           </div>
-        </div>
-      </div>
+          <div className={styles.additionalInfo}>
+            <div className={styles.additionalInfoContainer}>
+              <img src={humidity} alt={humidity} />
+              <div>
+                <p>{weather.main.humidity}%</p>
+                <h2>Humiduty</h2>
+              </div>
+            </div>
+            <div className={styles.additionalInfoContainer}>
+              <img src={wind} alt={wind} />
+              <div>
+                <p>
+                  {Math.round(weather.wind.speed)}
+                  km/h
+                </p>
+                <h2>Wind Speed</h2>
+              </div>
+            </div>
+          </div>
+        </>
+      ) : (
+        "Loading"
+      )}
     </section>
   );
 }
