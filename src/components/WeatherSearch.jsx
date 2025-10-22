@@ -5,7 +5,7 @@ import temperatureMax from "../assets/images/temperatureMax.png";
 import wind from "../assets/images/wind.svg";
 import humidity from "../assets/images/water.svg";
 
-function WeatherSearch({ weather }) {
+function WeatherSearch({ weather, weekDay }) {
   return (
     <section className={styles.searchContainer}>
       <form className={styles.searchForm}>
@@ -29,7 +29,7 @@ function WeatherSearch({ weather }) {
               {Math.round(weather.main.temp)}°C
             </h1>
             <p className={styles.currentCity}>{weather.name}</p>
-            <p className={styles.currentDay}>Monday</p>
+            <p className={styles.currentDay}>{weekDay}</p>
           </div>
           <div className={styles.currentWeatherTempInfo}>
             <div>

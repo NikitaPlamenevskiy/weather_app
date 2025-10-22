@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getCurrentWeather } from "./services/WeatherService";
+import { getCurrentWeather } from "./services/weatherService";
 import { getUserPosition } from "./services/userPositionService";
 import { WeatherSearch } from "./components/WeatherSearch";
 import { WeatherInfo } from "./components/WeatherInfo";
@@ -7,8 +7,20 @@ import "./App.css";
 
 function App() {
   const [weather, setWeather] = useState(null);
+  const [weekDay, setWeekDay] = useState(null);
   const [coords, setCoords] = useState(null);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!weather) return;
+
+    const getCurrentWeekDay = () => {
+      const date = new Date(weather.dt * 10000);
+      const today = date.toLocaleString("eng", { weekday: "long" });
+      setWeekDay(today);
+    };
+    getCurrentWeekDay();
+  }, [weather]);
 
   useEffect(() => {
     const handleUserPosition = async () => {
@@ -39,10 +51,10 @@ function App() {
     };
     fetchWeather();
   }, [coords]);
-  console.log(weather);
+
   return (
     <>
-      <WeatherSearch weather={weather} error={error} />
+      <WeatherSearch weather={weather} error={error} weekDay={weekDay} />
       <WeatherInfo />
     </>
   );
