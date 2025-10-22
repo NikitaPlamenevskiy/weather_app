@@ -15,7 +15,7 @@ function App() {
     if (!weather) return;
 
     const getCurrentWeekDay = () => {
-      const date = new Date(weather.dt * 10000);
+      const date = new Date(weather.dt * 1000);
       const today = date.toLocaleString("eng", { weekday: "long" });
       setWeekDay(today);
     };
