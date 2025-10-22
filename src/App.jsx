@@ -7,20 +7,12 @@ import "./App.css";
 
 function App() {
   const [weather, setWeather] = useState(null);
-  const [weekDay, setWeekDay] = useState(null);
   const [coords, setCoords] = useState(null);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    if (!weather) return;
-
-    const getCurrentWeekDay = () => {
-      const date = new Date(weather.dt * 1000);
-      const today = date.toLocaleString("eng", { weekday: "long" });
-      setWeekDay(today);
-    };
-    getCurrentWeekDay();
-  }, [weather]);
+  const weekDay = weather
+    ? new Date(weather.dt * 1000).toLocaleString("eng", { weekday: "long" })
+    : "";
 
   useEffect(() => {
     const fetchUserPosition = async () => {
