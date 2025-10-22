@@ -13,3 +13,7 @@ export { getCurrentWeather };
 
 // Для поиска по городу
 // `${API_URL}?q={cityName}&cnt={cnt}&units=metric&appid=${apiKey}`
+//Для загрезнения воздуха
+// api.openweathermap.org/data/2.5/air_pollution
+// Для 5 дней 
+// api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
