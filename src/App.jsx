@@ -8,7 +8,7 @@ import "./App.css";
 
 function App() {
   const [weather, setWeather] = useState(null);
-  const [forecast, setForecasat] = useState(null);
+  const [forecast, setForecast] = useState(null);
   const [coords, setCoords] = useState(null);
   const [error, setError] = useState(null);
 
@@ -36,7 +36,7 @@ function App() {
 
   useEffect(() => {
     if (!coords) return;
-
+    //Попробовать использвать Promise.all в дальнейшем
     const fetchWeather = async () => {
       try {
         const data = await getCurrentWeather(coords.latitude, coords.longitude);
@@ -52,7 +52,7 @@ function App() {
           coords.latitude,
           coords.longitude
         );
-        setForecasat(data);
+        setForecast(data);
       } catch (error) {
         setError(error);
       }
