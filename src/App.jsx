@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getCurrentWeather } from "./services/weatherService";
+import { getCurrentForecast } from "./services/weatherService";
 import { getUserPosition } from "./services/userPositionService";
 import { WeatherSearch } from "./components/WeatherSearch";
 import { WeatherInfo } from "./components/WeatherInfo";
@@ -7,8 +8,11 @@ import "./App.css";
 
 function App() {
   const [weather, setWeather] = useState(null);
+  const [forecast, setForecasat] = useState(null);
   const [coords, setCoords] = useState(null);
   const [error, setError] = useState(null);
+
+  console.log(forecast);
 
   const weekDay = weather
     ? new Date(weather.dt * 1000).toLocaleString("eng", { weekday: "long" })
@@ -41,13 +45,26 @@ function App() {
         setError(error);
       }
     };
+
+    const fetchForecast = async () => {
+      try {
+        const data = await getCurrentForecast(
+          coords.latitude,
+          coords.longitude
+        );
+        setForecasat(data);
+      } catch (error) {
+        setError(error);
+      }
+    };
     fetchWeather();
+    fetchForecast();
   }, [coords]);
 
   return (
     <>
       <WeatherSearch weather={weather} error={error} weekDay={weekDay} />
-      <WeatherInfo />
+      <WeatherInfo forecast={forecast} weather={weather} />
     </>
   );
 }

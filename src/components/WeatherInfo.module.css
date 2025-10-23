@@ -29,8 +29,10 @@
 .cardsContainer {
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
   gap: 15px;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
 }
 
 .card {
