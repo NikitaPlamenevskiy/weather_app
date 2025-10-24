@@ -14,6 +14,7 @@ import { getUserPosition } from "./services/userPositionService";
 import { WeatherSearch } from "./components/WeatherSearch";
 import { WeatherInfo } from "./components/WeatherInfo";
 import "./App.css";
+import { Loader } from "./components/Loader";
 
 function App() {
   const [weather, setWeather] = useState(null);
@@ -63,8 +64,14 @@ function App() {
 
   return (
     <>
-      <WeatherSearch weather={weather} error={error} weekDay={weekDay} />
-      <WeatherInfo forecast={forecast} weather={weather} />
+      {forecast && weather !== null ? (
+        <>
+          <WeatherSearch weather={weather} error={error} weekDay={weekDay} />
+          <WeatherInfo forecast={forecast} weather={weather} />
+        </>
+      ) : (
+        <Loader />
+      )}
     </>
   );
 }

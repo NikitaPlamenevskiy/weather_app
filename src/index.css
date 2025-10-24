@@ -13,6 +13,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, div, p {
+h1,
+h2,
+h3,
+div,
+p {
   margin: 0px;
 }
