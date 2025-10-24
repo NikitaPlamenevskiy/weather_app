@@ -1,3 +1,12 @@
+/** ToDo:
+1. Создать отдельный компонент карточки 
+2. Добавить информацию по Air Quality
+3. Добавить информацию по Восходу и Заходу солнца
+4. Добавить погоду по поиску названия города
+5. Переделать useEffect используя Promise.all 
+6. Сделать адаптацию под планшеты и моб. версию 
+**/ 
+
 import { useEffect, useState } from "react";
 import { getCurrentWeather } from "./services/weatherService";
 import { getCurrentForecast } from "./services/weatherService";
