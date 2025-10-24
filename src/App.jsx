@@ -45,7 +45,7 @@ function App() {
 
   useEffect(() => {
     if (!coords) return;
-    //Попробовать использвать Promise.all в дальнейшем
+
     const fetchData = async () => {
       try {
         const [weather, forecast] = await Promise.all([
