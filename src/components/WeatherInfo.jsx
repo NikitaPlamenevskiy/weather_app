@@ -3,14 +3,17 @@ import styles from "./WeatherInfo.module.css";
 function WeatherInfo({ forecast, weather }) {
   return (
     <section className={styles.weatherInfoContainer}>
-      <div className={styles.weekInfoContainer}>
-        <h2>5 Days Forecast</h2>
-        <div className={styles.cardsContainer}>
-          {forecast !== null ? (
-            <>
-              {forecast.list.map((day) => {
+      {forecast && weather !== null ? (
+        <>
+          <div className={styles.weekInfoContainer}>
+            <h2>5 Days Forecast</h2>
+            <div className={styles.cardsContainer}>
+              {forecast.list.map((day, index) => {
                 return (
-                  <div className={`${styles.card} ${styles.dayCard}`}>
+                  <div
+                    key={index}
+                    className={`${styles.card} ${styles.dayCard}`}
+                  >
                     <h3>
                       {new Date(day.dt * 1000).toLocaleString("en", {
                         weekday: "short",
@@ -20,7 +23,7 @@ function WeatherInfo({ forecast, weather }) {
                       {new Date(day.dt * 1000).toLocaleString("en", {
                         hour: "2-digit",
                         minute: "2-digit",
-                        hourCycle: "h24"
+                        hourCycle: "h24",
                       })}
                     </p>
                     <img
@@ -33,33 +36,29 @@ function WeatherInfo({ forecast, weather }) {
                   </div>
                 );
               })}
-            </>
-          ) : (
-            "Loading"
-          )}
-        </div>
-      </div>
-      {weather !== null ? (
-        <div className={styles.weekInfoContainer}>
-          <h2>Today's Overview</h2>
-          <div className={styles.cardsContainer}>
-            <div className={`${styles.infoCard} ${styles.card}  `}>
-              <h3>Air quality Index</h3>
-              <h2>53</h2>
-              <p>Good</p>
-            </div>
-            <div className={`${styles.infoCard} ${styles.card}  `}>
-              <h3>UV Index</h3>
-              <h2>53</h2>
-              <p>Good</p>
-            </div>
-            <div className={`${styles.infoCard} ${styles.card} `}>
-              <h3>Pressure</h3>
-              <h2>{weather.main.pressure}</h2>
-              <p>Good</p>
             </div>
           </div>
-        </div>
+          <div className={styles.weekInfoContainer}>
+            <h2>Today's Overview</h2>
+            <div className={styles.cardsContainer}>
+              <div className={`${styles.infoCard} ${styles.card}  `}>
+                <h3>Air quality Index</h3>
+                <h2>53</h2>
+                <p>Good</p>
+              </div>
+              <div className={`${styles.infoCard} ${styles.card}  `}>
+                <h3>UV Index</h3>
+                <h2>53</h2>
+                <p>Good</p>
+              </div>
+              <div className={`${styles.infoCard} ${styles.card} `}>
+                <h3>Pressure</h3>
+                <h2>{weather.main.pressure}</h2>
+                <p>Good</p>
+              </div>
+            </div>
+          </div>
+        </>
       ) : (
         "Loading"
       )}

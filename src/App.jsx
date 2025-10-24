@@ -3,9 +3,9 @@
 2. Добавить информацию по Air Quality
 3. Добавить информацию по Восходу и Заходу солнца
 4. Добавить погоду по поиску названия города
-5. Переделать useEffect используя Promise.all 
+[Done] 5. Переделать useEffect используя Promise.all 
 6. Сделать адаптацию под планшеты и моб. версию 
-**/ 
+**/
 
 import { useEffect, useState } from "react";
 import { getCurrentWeather } from "./services/weatherService";
@@ -46,28 +46,19 @@ function App() {
   useEffect(() => {
     if (!coords) return;
     //Попробовать использвать Promise.all в дальнейшем
-    const fetchWeather = async () => {
+    const fetchData = async () => {
       try {
-        const data = await getCurrentWeather(coords.latitude, coords.longitude);
-        setWeather(data);
+        const [weather, forecast] = await Promise.all([
+          getCurrentWeather(coords.latitude, coords.longitude),
+          getCurrentForecast(coords.latitude, coords.longitude),
+        ]);
+        setWeather(weather);
+        setForecast(forecast);
       } catch (error) {
         setError(error);
       }
     };
-
-    const fetchForecast = async () => {
-      try {
-        const data = await getCurrentForecast(
-          coords.latitude,
-          coords.longitude
-        );
-        setForecast(data);
-      } catch (error) {
-        setError(error);
-      }
-    };
-    fetchWeather();
-    fetchForecast();
+    fetchData();
   }, [coords]);
 
   return (
