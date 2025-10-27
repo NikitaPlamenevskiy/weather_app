@@ -1,4 +1,3 @@
-import { Loader } from "./Loader";
 import styles from "./WeatherSearch.module.css";
 import cloudRain from "../assets/images/cloudRain.png";
 import temperatureMin from "../assets/images/temperatureMin.png";
@@ -6,10 +5,15 @@ import temperatureMax from "../assets/images/temperatureMax.png";
 import wind from "../assets/images/wind.svg";
 import humidity from "../assets/images/water.svg";
 
-function WeatherSearch({ weather, weekDay }) {
+function WeatherSearch({ weather, weekDay, handleInputValue }) {
+  function handleInput(event) {
+    event.preventDefault();
+    const city = event.target.elements.city.value;
+    handleInputValue(city);
+  }
   return (
     <section className={styles.searchContainer}>
-      <form className={styles.searchForm}>
+      <form onSubmit={handleInput} className={styles.searchForm}>
         <input
           className={styles.searchInput}
           type="text"

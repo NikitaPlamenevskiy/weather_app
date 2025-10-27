@@ -18,7 +18,15 @@ async function getCurrentForecast(latitude, longitude) {
   return result;
 }
 
-export { getCurrentWeather, getCurrentForecast };
+async function getCurrentWeatherByCity(city) {
+  const response = await fetch(
+    `${WEATHER_URL}?q=${city}&units=metric&appid=${API_KEY}`
+  );
+  const result = await response.json();
+  return result;
+}
+
+export { getCurrentWeather, getCurrentForecast, getCurrentWeatherByCity };
 
 // Для поиска по городу
 // `${API_URL}?q={cityName}&cnt={cnt}&units=metric&appid=${apiKey}`

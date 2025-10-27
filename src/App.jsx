@@ -10,6 +10,7 @@
 import { useEffect, useState } from "react";
 import { getCurrentWeather } from "./services/weatherService";
 import { getCurrentForecast } from "./services/weatherService";
+import { getCurrentWeatherByCity } from "./services/weatherService";
 import { getUserPosition } from "./services/userPositionService";
 import { WeatherSearch } from "./components/WeatherSearch";
 import { WeatherInfo } from "./components/WeatherInfo";
@@ -17,13 +18,16 @@ import "./App.css";
 import { Loader } from "./components/Loader";
 
 function App() {
+  const [city, setCity] = useState("");
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
   const [coords, setCoords] = useState(null);
   const [error, setError] = useState(null);
-
-  console.log(forecast);
-
+  console.log(weather);
+  function handleInputValue(event) {
+    setCity(event);
+  }
+  console.log(city);
   const weekDay = weather
     ? new Date(weather.dt * 1000).toLocaleString("eng", { weekday: "long" })
     : "";
@@ -62,11 +66,30 @@ function App() {
     fetchData();
   }, [coords]);
 
+  useEffect(() => {
+    if (!city) return;
+    const fetchWeatherByCity = async () => {
+      try {
+        const weather = await getCurrentWeatherByCity(city);
+        setWeather(weather);
+      } catch (error) {
+        setError(error);
+      }
+    };
+    fetchWeatherByCity();
+  }, [city]);
+
   return (
     <>
       {forecast && weather !== null ? (
         <>
-          <WeatherSearch weather={weather} error={error} weekDay={weekDay} />
+          <WeatherSearch
+            weather={weather}
+            error={error}
+            weekDay={weekDay}
+            city={city}
+            handleInputValue={handleInputValue}
+          />
           <WeatherInfo forecast={forecast} weather={weather} />
         </>
       ) : (
