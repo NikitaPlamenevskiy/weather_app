@@ -14,8 +14,8 @@ import { getCurrentWeatherByCity } from "./services/weatherService";
 import { getUserPosition } from "./services/userPositionService";
 import { WeatherSearch } from "./components/WeatherSearch";
 import { WeatherInfo } from "./components/WeatherInfo";
-import "./App.css";
 import { Loader } from "./components/Loader";
+import "./App.css";
 
 function App() {
   const [city, setCity] = useState("");
@@ -23,11 +23,11 @@ function App() {
   const [forecast, setForecast] = useState(null);
   const [coords, setCoords] = useState(null);
   const [error, setError] = useState(null);
-  console.log(weather);
+
   function handleInputValue(event) {
     setCity(event);
   }
-  console.log(city);
+
   const weekDay = weather
     ? new Date(weather.dt * 1000).toLocaleString("eng", { weekday: "long" })
     : "";
@@ -59,6 +59,7 @@ function App() {
         ]);
         setWeather(weather);
         setForecast(forecast);
+        setCoords(null);
       } catch (error) {
         setError(error);
       }
@@ -72,6 +73,8 @@ function App() {
       try {
         const weather = await getCurrentWeatherByCity(city);
         setWeather(weather);
+        setCoords(weather.coord.lon, weather.coord.lat);
+        setCity("");
       } catch (error) {
         setError(error);
       }
