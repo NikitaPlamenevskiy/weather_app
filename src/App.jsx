@@ -72,7 +72,12 @@ function App() {
     const fetchWeatherByCity = async () => {
       try {
         const weather = await getCurrentWeatherByCity(city);
+        const forecast = await getCurrentForecast(
+          weather.coord.lat,
+          weather.coord.lon
+        );
         setWeather(weather);
+        setForecast(forecast);
         setCity("");
       } catch (error) {
         setError(error);
