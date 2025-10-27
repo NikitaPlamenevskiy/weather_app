@@ -73,7 +73,6 @@ function App() {
       try {
         const weather = await getCurrentWeatherByCity(city);
         setWeather(weather);
-        setCoords(weather.coord.lon, weather.coord.lat);
         setCity("");
       } catch (error) {
         setError(error);
