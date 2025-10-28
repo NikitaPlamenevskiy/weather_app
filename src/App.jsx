@@ -22,7 +22,10 @@ function App() {
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
   const [coords, setCoords] = useState(null);
+  const [load, setLoad] = useState(true);
   const [error, setError] = useState(null);
+
+  console.log(load);
 
   function handleInputValue(event) {
     setCity(event);
@@ -79,16 +82,19 @@ function App() {
         setWeather(weather);
         setForecast(forecast);
         setCity("");
+        setLoad(true);
       } catch (error) {
         setError(error);
+      } finally {
+        setLoad(false);
       }
     };
     fetchWeatherByCity();
-  }, [city]);
+  }, [city, load]);
 
   return (
     <>
-      {forecast && weather !== null ? (
+      {forecast && weather ? (
         <>
           <WeatherSearch
             weather={weather}
