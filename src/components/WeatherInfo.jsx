@@ -24,9 +24,9 @@ function WeatherInfo({ forecast, weather }) {
               </p>
               <img
                 src={`https://openweathermap.org/img/wn/${
-                  day ? day.weather[0].icon : "Loading"
+                  day ? day.weather[0].icon : ""
                 }@2x.png`}
-                alt={day.weather[0].description}
+                alt='weather'
               />
               <p>{Math.round(day.main.temp)}°C</p>
             </div>

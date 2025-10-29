@@ -1,9 +1,8 @@
 #root {
   max-width: 1440px;
+  height: 100vh;
   margin: 0 auto;
   padding: 15px;
-  display: flex;
-  gap: 20px;
 }
 
 .card {

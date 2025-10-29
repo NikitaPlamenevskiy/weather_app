@@ -25,8 +25,6 @@ function App() {
   const [coords, setCoords] = useState(null);
   const [error, setError] = useState(null);
 
-  console.log(weather);
-
   function handleInputValue(event) {
     setCity(event);
   }
@@ -90,8 +88,8 @@ function App() {
   }, [city]);
 
   return (
-    <>
-      {forecast && weather ? (
+    <div style={{ display: "flex", gap: "20px", justifyContent: "center" }}>
+      {weather && forecast ? (
         <>
           <WeatherSearch
             weather={weather}
@@ -105,7 +103,7 @@ function App() {
       ) : (
         <Loader />
       )}
-    </>
+    </div>
   );
 }
 
