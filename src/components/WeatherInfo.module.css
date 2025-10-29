@@ -30,6 +30,7 @@
   overflow-x: scroll;
   scrollbar-width: none;
   scroll-behavior: smooth;
+  padding-bottom: 6px;
 }
 
 .dayCard {
