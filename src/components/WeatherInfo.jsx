@@ -1,4 +1,3 @@
-import { Loader } from "./Loader";
 import styles from "./WeatherInfo.module.css";
 
 function WeatherInfo({ forecast, weather }) {
@@ -25,7 +24,7 @@ function WeatherInfo({ forecast, weather }) {
                   </p>
                   <img
                     src={`https://openweathermap.org/img/wn/${
-                      day !== null ? day.weather[0].icon : "Loading"
+                      day ? day.weather[0].icon : "Loading"
                     }@2x.png`}
                     alt={day.weather[0].description}
                   />
