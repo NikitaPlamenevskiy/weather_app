@@ -21,9 +21,6 @@
 
 .weekInfoContainer h2 {
   width: 100%;
-  margin-bottom: 20px;
-  font-size: 24px;
-  font-weight: 600;
 }
 
 .cardsContainer {
@@ -35,14 +32,6 @@
   scroll-behavior: smooth;
 }
 
-.card {
-  padding: 18px;
-  border-radius: 12px;
-  background-color: #252425;
-  border: 1px solid #212021;
-  box-shadow: 2px 4px 5px 0 rgba(0, 0, 0, 0.25);
-}
-
 .dayCard {
   justify-content: center;
   text-align: center;
@@ -52,27 +41,4 @@
 p {
   font-weight: 600;
   font-size: 24px;
-}
-
-.infoCard {
-  width: 27%;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.infoCard h3 {
-  margin-bottom: 30px;
-  font-weight: 500;
-  font-size: 17px;
-}
-.infoCard h2 {
-  margin-bottom: 10px;
-  font-size: 48px;
-  font-weight: 600;
-}
-
-.infoCard p {
-  color: #009966;
-  font-weight: 700;
-  font-size: 17px;
 }
