@@ -29,5 +29,5 @@ async function getCurrentWeatherByCity(city) {
 export { getCurrentWeather, getCurrentForecast, getCurrentWeatherByCity };
 
 
-//Для загрезнения воздуха
+//Для загрязнения воздуха
 // api.openweathermap.org/data/2.5/air_pollution
