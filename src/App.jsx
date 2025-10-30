@@ -11,6 +11,7 @@
 import { useEffect, useState } from "react";
 import { getCurrentWeather } from "./services/weatherService";
 import { getCurrentForecast } from "./services/weatherService";
+import { getCurrentAirPollution } from "./services/weatherService";
 import { getCurrentWeatherByCity } from "./services/weatherService";
 import { getUserPosition } from "./services/userPositionService";
 import { WeatherSearch } from "./components/WeatherSearch";
@@ -22,9 +23,11 @@ function App() {
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
+  const [airPollution, setAirpollution] = useState(null);
   const [coords, setCoords] = useState(null);
   const [error, setError] = useState(null);
-
+  console.log(airPollution);
+  
   function handleInputValue(event) {
     setCity(event);
   }
@@ -54,12 +57,14 @@ function App() {
 
     const fetchData = async () => {
       try {
-        const [weather, forecast] = await Promise.all([
+        const [weather, forecast, airPollution] = await Promise.all([
           getCurrentWeather(coords.latitude, coords.longitude),
           getCurrentForecast(coords.latitude, coords.longitude),
+          getCurrentAirPollution(coords.latitude, coords.longitude),
         ]);
         setWeather(weather);
         setForecast(forecast);
+        setAirpollution(airPollution);
         setCoords(null);
       } catch (error) {
         setError(error);
@@ -77,8 +82,13 @@ function App() {
           weather.coord.lat,
           weather.coord.lon
         );
+        const airPollution = await getCurrentAirPollution(
+          weather.coord.lat,
+          weather.coord.lon
+        );
         setWeather(weather);
         setForecast(forecast);
+        setAirpollution(airPollution);
         setCity("");
       } catch (error) {
         setError(error);
@@ -89,7 +99,7 @@ function App() {
 
   return (
     <div style={{ display: "flex", gap: "20px", justifyContent: "center" }}>
-      {weather && forecast ? (
+      {weather && forecast && airPollution ? (
         <>
           <WeatherSearch
             weather={weather}
@@ -98,7 +108,11 @@ function App() {
             city={city}
             handleInputValue={handleInputValue}
           />
-          <WeatherInfo forecast={forecast} weather={weather} />
+          <WeatherInfo
+            forecast={forecast}
+            weather={weather}
+            airPollution={airPollution}
+          />
         </>
       ) : (
         <Loader />

@@ -1,9 +1,11 @@
 import { CardInfo } from "./CardInfo";
-import barometer from "../assets/images/air-pollution.svg";
-import styles from "./WeatherInfo.module.css";
 import { CardForecast } from "./CardForecast";
+import barometer from "../assets/images/barometer.svg";
+import airpollution from "../assets/images/air-pollution.svg";
+import styles from "./WeatherInfo.module.css";
 
-function WeatherInfo({ forecast, weather }) {
+function WeatherInfo({ forecast, weather, airPollution }) {
+
   return (
     <section className={styles.сontainer}>
       <h2>5 Days Forecast</h2>
@@ -31,6 +33,12 @@ function WeatherInfo({ forecast, weather }) {
 
       <h2>Today's Overview</h2>
       <div className={styles.cards__сontainer}>
+        <CardInfo
+          title="Air Quality Index"
+          value={airPollution.list[0].main.aqi}
+          status="Good"
+          imgName={airpollution}
+        />
         <CardInfo
           title="Pressure (hpa)"
           value={weather.main.pressure}
