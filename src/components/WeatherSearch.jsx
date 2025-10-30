@@ -12,8 +12,8 @@ function WeatherSearch({ weather, weekDay, handleInputValue }) {
     handleInputValue(city);
   }
   return (
-    <section className={styles.searchContainer}>
-      <form onSubmit={handleInput} className={styles.searchForm}>
+    <section className={styles.container}>
+      <form onSubmit={handleInput}>
         <input
           className={styles.searchInput}
           type="text"

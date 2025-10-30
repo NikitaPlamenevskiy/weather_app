@@ -3,7 +3,7 @@ import styles from "./CardInfo.module.css";
 function CardInfo({ title, value, status, imgName }) {
   return (
     <>
-      <div className={`${styles.cardInfo} ${"card"}`}>
+      <div className={`${styles.card__info} ${"card"}`}>
         <h3>{title}</h3>
         <div>
           <h2>{value}</h2>

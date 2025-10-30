@@ -1,4 +1,4 @@
-.weatherInfoContainer {
+.сontainer {
   max-width: 940px;
   display: flex;
   flex-wrap: wrap;
@@ -14,16 +14,7 @@
   text-align: left;
 }
 
-.weekInfoContainer {
-  width: 100%;
-  margin: 0px;
-}
-
-.weekInfoContainer h2 {
-  width: 100%;
-}
-
-.cardsContainer {
+.cards__сontainer {
   width: 100%;
   display: flex;
   gap: 15px;
@@ -31,15 +22,4 @@
   scrollbar-width: none;
   scroll-behavior: smooth;
   padding-bottom: 6px;
-}
-
-.dayCard {
-  justify-content: center;
-  text-align: center;
-}
-
-.dayCard h3,
-p {
-  font-weight: 600;
-  font-size: 24px;
 }
