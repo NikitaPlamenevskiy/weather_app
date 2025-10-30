@@ -19,8 +19,9 @@ form {
 }
 
 form input {
+  padding-left: 20px;
   font-family: "Plus Jakarta Sans", sans-serif;
-  width: 100%;
+  width: 90%;
   height: 54px;
   font-size: 16px;
   color: #7e7c7c;
