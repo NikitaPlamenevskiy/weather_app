@@ -4,8 +4,7 @@ import barometer from "../assets/images/barometer.svg";
 import airpollution from "../assets/images/air-pollution.svg";
 import styles from "./WeatherInfo.module.css";
 
-function WeatherInfo({ forecast, weather, airPollution }) {
-
+function WeatherInfo({ forecast, weather, airPollution, airStatus }) {
   return (
     <section className={styles.сontainer}>
       <h2>5 Days Forecast</h2>
@@ -36,7 +35,7 @@ function WeatherInfo({ forecast, weather, airPollution }) {
         <CardInfo
           title="Air Quality Index"
           value={airPollution.list[0].main.aqi}
-          status="Good"
+          status={airStatus}
           imgName={airpollution}
         />
         <CardInfo

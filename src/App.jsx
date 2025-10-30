@@ -26,10 +26,23 @@ function App() {
   const [airPollution, setAirpollution] = useState(null);
   const [coords, setCoords] = useState(null);
   const [error, setError] = useState(null);
-  console.log(airPollution);
-  
+
   function handleInputValue(event) {
     setCity(event);
+  }
+
+  function determinAirQuality() {
+    const airStatus = {
+      1: "Good",
+      2: "Fair",
+      3: "Moderate",
+      4: "Poor",
+      5: "Very Poor",
+    };
+
+    if (airStatus[airPollution.list[0].main.aqi]) {
+      return airStatus[airPollution.list[0].main.aqi];
+    }
   }
 
   const weekDay = weather
@@ -112,6 +125,7 @@ function App() {
             forecast={forecast}
             weather={weather}
             airPollution={airPollution}
+            airStatus={determinAirQuality()}
           />
         </>
       ) : (
