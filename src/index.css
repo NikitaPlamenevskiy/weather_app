@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #191B1F;
+  background-color: #191b1f;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -19,4 +19,3 @@ h3,
 p {
   margin: 0px;
 }
-
