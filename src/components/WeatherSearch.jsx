@@ -1,5 +1,4 @@
 import styles from "./WeatherSearch.module.css";
-import cloudRain from "../assets/images/cloudRain.png";
 import temperatureMin from "../assets/images/temperatureMin.png";
 import temperatureMax from "../assets/images/temperatureMax.png";
 import wind from "../assets/images/wind.svg";
@@ -38,8 +37,14 @@ function WeatherSearch({ weather, weekDay, handleInputValue }) {
       </div>
       <div className={styles.currentWeatherTempInfo}>
         <div>
-          <img src={cloudRain} alt={cloudRain} />
-          <p>{weather.weather[0].description}</p>
+          <img
+            style={{ filter: "grayscale(100%)" }}
+            src={`https://openweathermap.org/img/wn/${
+              weather ? weather.weather[0].icon : ""
+            }@4x.png`}
+            alt={weather.weather[0].description}
+          />
+          <p>{weather.weather[0].main}</p>
         </div>
         <div>
           <img src={temperatureMin} alt={temperatureMin} />

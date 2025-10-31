@@ -4,12 +4,7 @@ import barometer from "../assets/images/barometer.svg";
 import airpollution from "../assets/images/air-pollution.svg";
 import styles from "./WeatherInfo.module.css";
 
-function WeatherInfo({
-  forecast,
-  weather,
-  airPollution,
-  airStatus
-}) {
+function WeatherInfo({ forecast, weather, airPollution, airStatus }) {
   return (
     <section className={styles.container}>
       <h2>5 Days Forecast</h2>
@@ -20,6 +15,7 @@ function WeatherInfo({
               key={index}
               date={new Date(day.dt * 1000).toLocaleString("en", {
                 weekday: "short",
+                day: "numeric",
               })}
               time={new Date(day.dt * 1000).toLocaleString("en", {
                 hour: "2-digit",
