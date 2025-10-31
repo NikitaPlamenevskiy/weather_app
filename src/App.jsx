@@ -27,8 +27,6 @@ function App() {
   const [coords, setCoords] = useState(null);
   const [error, setError] = useState(null);
 
-  console.log(forecast);
-
   function handleInputValue(event) {
     setCity(event);
   }
