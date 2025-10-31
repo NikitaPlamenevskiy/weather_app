@@ -11,9 +11,9 @@ function WeatherInfo({
   airStatus
 }) {
   return (
-    <section className={styles.сontainer}>
+    <section className={styles.container}>
       <h2>5 Days Forecast</h2>
-      <div className={styles.cards__сontainer}>
+      <div className={styles.cards__container}>
         {forecast.list.map((day, index) => {
           return (
             <CardForecast
@@ -36,7 +36,7 @@ function WeatherInfo({
       </div>
 
       <h2>Today's Overview</h2>
-      <div className={styles.cards__сontainer}>
+      <div className={styles.cards__container}>
         <CardInfo
           title="Air Quality Index"
           value={airPollution.list[0].main.aqi}
