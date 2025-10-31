@@ -55,7 +55,7 @@ function WeatherSearch({ weather, weekDay, handleInputValue }) {
           <p>Max Temperature: {Math.round(weather.main.temp_max)}°C</p>
         </div>
       </div>
-      <div className={styles.additionalInfo}>
+      <div className={`${styles.additionalInfo} ${"card"}`}>
         <div className={styles.additionalInfoContainer}>
           <img src={humidity} alt={humidity} />
           <div>

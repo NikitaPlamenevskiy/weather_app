@@ -23,3 +23,32 @@
   scroll-behavior: smooth;
   padding-bottom: 6px;
 }
+
+.card_sun {
+  max-width: 270px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.card_sun h3 {
+  width: 100%;
+}
+
+.sun__info {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+
+.sun__info p {
+  font-size: 12px;
+  color: #6a6969;
+}
+
+.sun__info h2 {
+  font-size: 17px;
+  font-weight: medium;
+}

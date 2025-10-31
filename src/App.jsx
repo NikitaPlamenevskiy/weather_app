@@ -27,6 +27,8 @@ function App() {
   const [coords, setCoords] = useState(null);
   const [error, setError] = useState(null);
 
+  console.log(weather)
+
   function handleInputValue(event) {
     setCity(event);
   }
@@ -125,7 +127,7 @@ function App() {
             forecast={forecast}
             weather={weather}
             airPollution={airPollution}
-            airStatus={determineAirQuality()}
+            airQuality={determineAirQuality()}
           />
         </>
       ) : (

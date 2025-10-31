@@ -2,9 +2,11 @@ import { CardInfo } from "./CardInfo";
 import { CardForecast } from "./CardForecast";
 import barometer from "../assets/images/barometer.svg";
 import airpollution from "../assets/images/air-pollution.svg";
+import sunrise from "../assets/images/sunrise.svg";
+import sunset from "../assets/images/sunset.svg";
 import styles from "./WeatherInfo.module.css";
 
-function WeatherInfo({ forecast, weather, airPollution, airStatus }) {
+function WeatherInfo({ forecast, weather, airPollution, airQuality }) {
   return (
     <section className={styles.container}>
       <h2>5 Days Forecast</h2>
@@ -36,7 +38,7 @@ function WeatherInfo({ forecast, weather, airPollution, airStatus }) {
         <CardInfo
           title="Air Quality Index"
           value={airPollution.list[0].main.aqi}
-          status={airStatus}
+          status={airQuality}
           imgName={airpollution}
         />
         <CardInfo
@@ -45,6 +47,35 @@ function WeatherInfo({ forecast, weather, airPollution, airStatus }) {
           status="Good"
           imgName={barometer}
         />
+      </div>
+      <div className={`${styles.card_sun} ${"card"} `}>
+        <h3>Sunrise & Sunset</h3>
+        <div className={styles.sun__info}>
+          <img src={sunrise} alt={sunrise} />
+          <div>
+            <p>Sunrise</p>
+            <h2>
+              {new Date(weather.sys.sunrise * 1000).toLocaleString("en", {
+                hour: "numeric",
+                minute: "2-digit",
+                hourCycle: "h24",
+              })}
+            </h2>
+          </div>
+        </div>
+        <div className={styles.sun__info}>
+          <img src={sunset} alt={sunset} />
+          <div>
+            <p>Sunset</p>
+            <h2>
+              {new Date(weather.sys.sunset * 1000).toLocaleString("en", {
+                hour: "numeric",
+                minute: "2-digit",
+                hourCycle: "h24",
+              })}
+            </h2>
+          </div>
+        </div>
       </div>
     </section>
   );
