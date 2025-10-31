@@ -55,7 +55,7 @@ function WeatherSearch({ weather, weekDay, handleInputValue }) {
           <img src={humidity} alt={humidity} />
           <div>
             <p>{weather.main.humidity}%</p>
-            <h2>Humiduty</h2>
+            <h2>Humidity</h2>
           </div>
         </div>
         <div className={styles.additionalInfoContainer}>

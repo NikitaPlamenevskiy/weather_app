@@ -31,7 +31,7 @@ function App() {
     setCity(event);
   }
 
-  function determinAirQuality() {
+  function determineAirQuality() {
     const airStatus = {
       1: "Good",
       2: "Fair",
@@ -125,7 +125,7 @@ function App() {
             forecast={forecast}
             weather={weather}
             airPollution={airPollution}
-            airStatus={determinAirQuality()}
+            airStatus={determineAirQuality()}
           />
         </>
       ) : (

@@ -8,7 +8,7 @@ function CardInfo({ title, value, status, imgName }) {
         <div>
           <h2>{value}</h2>
           <p>{status}</p>
-          <img src={imgName} alt={imgName} />
+          <img src={imgName} alt={title} />
         </div>
       </div>
     </>

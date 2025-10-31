@@ -1,4 +1,4 @@
-.сontainer {
+.container {
   max-width: 940px;
   display: flex;
   flex-wrap: wrap;
@@ -14,7 +14,7 @@
   text-align: left;
 }
 
-.cards__сontainer {
+.cards__container {
   width: 100%;
   display: flex;
   gap: 15px;
