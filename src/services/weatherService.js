@@ -1,8 +1,9 @@
+const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 const WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather";
 const FORECAST_URL = "https://api.openweathermap.org/data/2.5/forecast";
 const AIR_POLLUTION_URL =
   "https://api.openweathermap.org/data/2.5/air_pollution";
-const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+
 
 async function getCurrentWeather(latitude, longitude) {
   const response = await fetch(

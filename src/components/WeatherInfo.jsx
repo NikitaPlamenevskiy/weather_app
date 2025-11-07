@@ -4,9 +4,10 @@ import barometer from "../assets/images/barometer.svg";
 import airpollution from "../assets/images/air-pollution.svg";
 import sunrise from "../assets/images/sunrise.svg";
 import sunset from "../assets/images/sunset.svg";
+import uv from "../assets/images/uv.svg";
 import styles from "./WeatherInfo.module.css";
 
-function WeatherInfo({ forecast, weather, airPollution, airQuality }) {
+function WeatherInfo({ forecast, weather, airPollution, airQuality, uvIndex }) {
   return (
     <section className={styles.container}>
       <h2>5 Days Forecast</h2>
@@ -46,6 +47,12 @@ function WeatherInfo({ forecast, weather, airPollution, airQuality }) {
           value={weather.main.pressure}
           status="Good"
           imgName={barometer}
+        />
+        <CardInfo
+          title="UV Index"
+          value={Math.floor(uvIndex.result.uv)}
+          status="Good"
+          imgName={uv}
         />
       </div>
       <div className={`${styles.card_sun} ${"card"} `}>

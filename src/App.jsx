@@ -1,8 +1,9 @@
 /** ToDo:
 [Done] Создать отдельный компонент карточки для информации Air Pollution / Pressure 
-[Done]Создать отдельный компонент карточки погоды
-[Done]Добавить информацию по Air Quality
-Добавить информацию по Восходу и Заходу солнца
+[Done] Создать отдельный компонент карточки погоды
+[Done] Добавить информацию по Air Quality
+[Done] Добавить информацию по UVIndex
+[Done] Добавить информацию по Восходу и Заходу солнца
 [Done] Добавить погоду по поиску названия города
 [Done] Переделать useEffect используя Promise.all 
 Сделать адаптацию под планшеты и моб. версию 
@@ -18,16 +19,18 @@ import { WeatherSearch } from "./components/WeatherSearch";
 import { WeatherInfo } from "./components/WeatherInfo";
 import { Loader } from "./components/Loader";
 import "./App.css";
+import { getCurrentUvIndex } from "./services/uvService";
 
 function App() {
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
   const [airPollution, setAirpollution] = useState(null);
+  const [uvIndex, setUvIndex] = useState(null);
   const [coords, setCoords] = useState(null);
   const [error, setError] = useState(null);
 
-  console.log(weather)
+  console.log(uvIndex);
 
   function handleInputValue(event) {
     setCity(event);
@@ -72,14 +75,16 @@ function App() {
 
     const fetchData = async () => {
       try {
-        const [weather, forecast, airPollution] = await Promise.all([
+        const [weather, forecast, airPollution, uv] = await Promise.all([
           getCurrentWeather(coords.latitude, coords.longitude),
           getCurrentForecast(coords.latitude, coords.longitude),
           getCurrentAirPollution(coords.latitude, coords.longitude),
+          getCurrentUvIndex(coords.latitude, coords.longitude),
         ]);
         setWeather(weather);
         setForecast(forecast);
         setAirpollution(airPollution);
+        setUvIndex(uv);
         setCoords(null);
       } catch (error) {
         setError(error);
@@ -101,9 +106,14 @@ function App() {
           weather.coord.lat,
           weather.coord.lon
         );
+        const uvIndex = await getCurrentUvIndex(
+          weather.coord.lat,
+          weather.coord.lon
+        );
         setWeather(weather);
         setForecast(forecast);
         setAirpollution(airPollution);
+        setUvIndex(uvIndex);
         setCity("");
       } catch (error) {
         setError(error);
@@ -114,7 +124,7 @@ function App() {
 
   return (
     <div style={{ display: "flex", gap: "20px", justifyContent: "center" }}>
-      {weather && forecast && airPollution ? (
+      {weather && forecast && airPollution && uvIndex ? (
         <>
           <WeatherSearch
             weather={weather}
@@ -128,6 +138,7 @@ function App() {
             weather={weather}
             airPollution={airPollution}
             airQuality={determineAirQuality()}
+            uvIndex={uvIndex}
           />
         </>
       ) : (
