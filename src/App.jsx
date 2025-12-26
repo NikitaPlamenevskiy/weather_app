@@ -18,8 +18,8 @@ import { getUserPosition } from "./services/userPositionService";
 import { WeatherSearch } from "./components/WeatherSearch";
 import { WeatherInfo } from "./components/WeatherInfo";
 import { Loader } from "./components/Loader";
-import "./App.css";
 import { getCurrentUvIndex } from "./services/uvService";
+import "./App.css";
 
 function App() {
   const [city, setCity] = useState("");
