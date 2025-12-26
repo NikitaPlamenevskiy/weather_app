@@ -29,8 +29,18 @@ function App() {
   const [uvIndex, setUvIndex] = useState(null);
   const [coords, setCoords] = useState(null);
   const [error, setError] = useState(null);
+  
+  //Использовать один useState для погодных данных 
+  const [data, setData] = useState({
+    weather: null,
+    forecast: null,
+    airPollution: null,
+    unIndex: null,
+    coords: null,
+  });
 
   console.log(uvIndex);
+  console.log(`Данные с`, data);
 
   function handleInputValue(event) {
     setCity(event);
@@ -60,10 +70,16 @@ function App() {
         const position = await getUserPosition();
         const { latitude, longitude } = position;
         setCoords({ latitude, longitude });
+        //Добавил координаы в единый стейт 
+        setData({ ...data, coords: { latitude, longitude } });
       } catch (error) {
         if (error) {
           //If user doesnt allow his geolocation, shows Moscow as default value for coords
           setCoords({ latitude: 55.7569, longitude: 37.6151 });
+          setData({
+            ...data,
+            coords: { latitude: 55.7569, longitude: 37.6151 },
+          });
         }
       }
     };
