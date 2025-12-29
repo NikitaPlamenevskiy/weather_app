@@ -73,7 +73,7 @@ function App() {
     const fetchData = async () => {
       try {
         const [weather, forecast, airPollution, uv] = await Promise.all([
-          getCurrentWeather(data?.coords?.latitude, data.coords.longitude),
+          getCurrentWeather(data.coords.latitude, data.coords.longitude),
           getCurrentForecast(data.coords.latitude, data.coords.longitude),
           getCurrentAirPollution(data.coords.latitude, data.coords.longitude),
           getCurrentUvIndex(data.coords.latitude, data.coords.longitude),
