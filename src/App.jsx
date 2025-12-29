@@ -1,14 +1,3 @@
-/** ToDo:
-[Done] Создать отдельный компонент карточки для информации Air Pollution / Pressure 
-[Done] Создать отдельный компонент карточки погоды
-[Done] Добавить информацию по Air Quality
-[Done] Добавить информацию по UVIndex
-[Done] Добавить информацию по Восходу и Заходу солнца
-[Done] Добавить погоду по поиску названия города
-[Done] Переделать useEffect используя Promise.all 
-Сделать адаптацию под планшеты и моб. версию 
-**/
-
 import { useEffect, useState } from "react";
 import { getCurrentWeather } from "./services/weatherService";
 import { getCurrentForecast } from "./services/weatherService";
@@ -23,30 +12,23 @@ import "./App.css";
 
 function App() {
   const [city, setCity] = useState("");
-  const [weather, setWeather] = useState(null);
-  const [forecast, setForecast] = useState(null);
-  const [airPollution, setAirpollution] = useState(null);
-  const [uvIndex, setUvIndex] = useState(null);
-  const [coords, setCoords] = useState(null);
-  const [error, setError] = useState(null);
-  
-  //Использовать один useState для погодных данных 
   const [data, setData] = useState({
     weather: null,
     forecast: null,
     airPollution: null,
-    unIndex: null,
+    uvIndex: null,
     coords: null,
   });
-
-  console.log(uvIndex);
-  console.log(`Данные с`, data);
+  const [error, setError] = useState(null);
 
   function handleInputValue(event) {
     setCity(event);
   }
 
   function determineAirQuality() {
+    const aqi = data.airPollution?.list[0]?.main?.aqi;
+    if (!aqi) return;
+
     const airStatus = {
       1: "Good",
       2: "Fair",
@@ -55,13 +37,13 @@ function App() {
       5: "Very Poor",
     };
 
-    if (airStatus[airPollution.list[0].main.aqi]) {
-      return airStatus[airPollution.list[0].main.aqi];
-    }
+    return airStatus[aqi];
   }
 
-  const weekDay = weather
-    ? new Date(weather.dt * 1000).toLocaleString("eng", { weekday: "long" })
+  const weekDay = data.weather
+    ? new Date(data.weather.dt * 1000).toLocaleString("eng", {
+        weekday: "long",
+      })
     : "";
 
   useEffect(() => {
@@ -69,17 +51,16 @@ function App() {
       try {
         const position = await getUserPosition();
         const { latitude, longitude } = position;
-        setCoords({ latitude, longitude });
-        //Добавил координаы в единый стейт 
-        setData({ ...data, coords: { latitude, longitude } });
+        setData((prev) => ({
+          ...prev,
+          coords: { latitude, longitude },
+        }));
       } catch (error) {
         if (error) {
-          //If user doesnt allow his geolocation, shows Moscow as default value for coords
-          setCoords({ latitude: 55.7569, longitude: 37.6151 });
-          setData({
-            ...data,
+          setData((prev) => ({
+            ...prev,
             coords: { latitude: 55.7569, longitude: 37.6151 },
-          });
+          }));
         }
       }
     };
@@ -87,27 +68,30 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (!coords) return;
+    if (!data.coords) return;
 
     const fetchData = async () => {
       try {
         const [weather, forecast, airPollution, uv] = await Promise.all([
-          getCurrentWeather(coords.latitude, coords.longitude),
-          getCurrentForecast(coords.latitude, coords.longitude),
-          getCurrentAirPollution(coords.latitude, coords.longitude),
-          getCurrentUvIndex(coords.latitude, coords.longitude),
+          getCurrentWeather(data?.coords?.latitude, data.coords.longitude),
+          getCurrentForecast(data.coords.latitude, data.coords.longitude),
+          getCurrentAirPollution(data.coords.latitude, data.coords.longitude),
+          getCurrentUvIndex(data.coords.latitude, data.coords.longitude),
         ]);
-        setWeather(weather);
-        setForecast(forecast);
-        setAirpollution(airPollution);
-        setUvIndex(uv);
-        setCoords(null);
+        setData((prev) => ({
+          ...prev,
+          weather: weather,
+          forecast: forecast,
+          airPollution: airPollution,
+          uvIndex: uv,
+          coords: null,
+        }));
       } catch (error) {
         setError(error);
       }
     };
     fetchData();
-  }, [coords]);
+  }, [data.coords]);
 
   useEffect(() => {
     if (!city) return;
@@ -118,6 +102,7 @@ function App() {
           weather.coord.lat,
           weather.coord.lon
         );
+
         const airPollution = await getCurrentAirPollution(
           weather.coord.lat,
           weather.coord.lon
@@ -126,10 +111,14 @@ function App() {
           weather.coord.lat,
           weather.coord.lon
         );
-        setWeather(weather);
-        setForecast(forecast);
-        setAirpollution(airPollution);
-        setUvIndex(uvIndex);
+        setData((prev) => ({
+          ...prev,
+          weather,
+          forecast,
+          airPollution,
+          uvIndex,
+          coords: null,
+        }));
         setCity("");
       } catch (error) {
         setError(error);
@@ -140,21 +129,21 @@ function App() {
 
   return (
     <div style={{ display: "flex", gap: "20px", justifyContent: "center" }}>
-      {weather && forecast && airPollution && uvIndex ? (
+      {data.weather && data.forecast && data.airPollution && data.uvIndex ? (
         <>
           <WeatherSearch
-            weather={weather}
+            weather={data.weather}
             error={error}
             weekDay={weekDay}
             city={city}
             handleInputValue={handleInputValue}
           />
           <WeatherInfo
-            forecast={forecast}
-            weather={weather}
-            airPollution={airPollution}
+            forecast={data.forecast}
+            weather={data.weather}
+            airPollution={data.airPollution}
             airQuality={determineAirQuality()}
-            uvIndex={uvIndex}
+            uvIndex={data.uvIndex}
           />
         </>
       ) : (
