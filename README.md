@@ -7,7 +7,8 @@
 
 ## Contains basic functionality:
 
-<a href="weather-app-six-ochre-64.vercel.app" target="_blank">Web demo</a>
+Web:
+https://weather-app-six-ochre-64.vercel.app/
 
 - Forecast by user geolocation.
 - Search forecast by city name.
