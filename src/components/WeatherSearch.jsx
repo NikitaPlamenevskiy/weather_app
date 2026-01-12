@@ -19,9 +19,7 @@ function WeatherSearch({ weather, weekDay, handleInputValue, error }) {
           name="city"
           placeholder="Search city..."
         ></input>
-        <span style={{ display: error ? "block" : "none" }}>
-          Oooops, there is no such city
-        </span>
+        {error && <span>Oooops, there is no such city</span>}
       </form>
 
       <div className={styles.currentWeather}>
