@@ -10,7 +10,7 @@
 Web:
 https://weather-app-six-ochre-64.vercel.app/
 
-- Forecast by user geolocation.
+- Forecast by user's geolocation.
 - Search forecast by city name.
 
 <picture>
