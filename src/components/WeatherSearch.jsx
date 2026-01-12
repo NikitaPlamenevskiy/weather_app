@@ -4,7 +4,7 @@ import temperatureMax from "../assets/images/temperatureMax.png";
 import wind from "../assets/images/wind.svg";
 import humidity from "../assets/images/water.svg";
 
-function WeatherSearch({ weather, weekDay, handleInputValue }) {
+function WeatherSearch({ weather, weekDay, handleInputValue, error }) {
   function handleInput(event) {
     event.preventDefault();
     const city = event.target.elements.city.value;
@@ -19,6 +19,9 @@ function WeatherSearch({ weather, weekDay, handleInputValue }) {
           name="city"
           placeholder="Search city..."
         ></input>
+        <span style={{ display: error ? "block" : "none" }}>
+          Oooops, there is no such city
+        </span>
       </form>
 
       <div className={styles.currentWeather}>

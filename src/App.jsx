@@ -120,6 +120,7 @@ function App() {
           coords: null,
         }));
         setCity("");
+        setError(null);
       } catch (error) {
         setError(error);
       }
